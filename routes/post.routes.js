@@ -1,20 +1,24 @@
 const express = require("express");
-
 const Router = express.Router();
 
 Router.get("/", (req, res) => {
-    res.json({ message: "data" });
+    res.json({ message: "je suis la nouvelle data" });
 });
 
 Router.post("/", (req, res) => {
-    console.log(req.body);
-    res.json({ message: req.body.message });
+    res.json({ message: "ça a marché" });
 });
+
 Router.put("/:id", (req, res) => {
-    res.json({ messageId: req.params.id });
+    res.json({ message: req.params.id });
 });
+
 Router.delete("/:id", (req, res) => {
-    res.json({ messageId: `le compte lié à l'id ${req.params.id} a bien été supprimé` });
+    res.json({ message: req.params.id });
+});
+
+Router.patch("/like-post/:id", (req, res) => {
+    res.json({ message: "poste liké" });
 });
 
 module.exports = Router;
