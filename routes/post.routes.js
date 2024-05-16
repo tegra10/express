@@ -1,13 +1,12 @@
 const express = require("express");
 const Router = express.Router();
+const { setPosts } = require("../controllers/post.controller.js");
 
 Router.get("/", (req, res) => {
     res.json({ message: "je suis la nouvelle data" });
 });
 
-Router.post("/", (req, res) => {
-    res.json({ message: "ça a marché" });
-});
+Router.post("/",setPosts);
 
 Router.put("/:id", (req, res) => {
     res.json({ message: req.params.id });
