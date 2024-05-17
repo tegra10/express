@@ -27,16 +27,22 @@ module.exports.setPosts = async (req, res) => {
 
 module.exports.editPosts = async (req, res) => {
     const post = await postModel.findById(req.params.id);
-try{
-  
+
     if (!post) {
         res.status(400).json({ message: "le message n'existe pas" });
     }
-    const updatePost = await postModel.findByIdAndUpdate(post, req.body,{message:req.body.message}, {
+    const updatePost = await postModel.findByIdAndUpdate(post, req.body, {
         new: true
     });
     res.status(200).json(updatePost);
-}catch(err){
-  console.error(err)
-}
+};
+
+module.exports.deletePosts = async (req, res) => {
+    const post = await postModel.findByIdAndDelete(req.params.id);
+
+    if (!post) {
+        return res.status(400).json({ message: "Le post n'existe pas" });
+    }
+
+    return res.status(200).json({ message: "Le post a été supprimé avec succès" });
 };
